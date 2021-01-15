@@ -1,5 +1,25 @@
 
 console.log('hello world')
+getJS.onclick = ()=>{
+  const request = new XMLHttpRequest();
+  request.open('GET','/2.js')
+  request.onload = (res) => {
+    console.log('res-------')
+    console.log(res)
+    console.log(res.currentTarget.response)
+    console.log('request.response')
+    console.log(request.response)
+    const script = document.createElement('script')
+    script.innerHTML = request.response
+
+    console.log(script)
+    document.body.appendChild(script)
+  }
+  request.onerror = (err) => {
+    console.log('gun')
+  }
+  request.send()
+}
 
 getCSS.onclick = () => {
   //创建
