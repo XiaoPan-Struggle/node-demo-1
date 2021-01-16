@@ -1,5 +1,29 @@
 
 console.log('hello world')
+let n = 2
+getPage.onclick = () => {
+  const request = new XMLHttpRequest();
+  request.open('GET',`/page${n}`);
+  request.onreadystatechange = () => {
+    if(request.readyState === 4 && request.status === 200) {
+      console.log(request.response)
+      const array = JSON.parse(request.response);
+      array.forEach(item => {
+        const ul = document.createElement('ul');
+        const li = document.createElement('li');
+        li.textContent = item.id;
+        xxx.appendChild(li);
+      })
+      n++
+      if(n-1 === 3){
+        n = 3
+      }
+      console.log(n)
+
+    }
+  }
+  request.send();
+}
 getJSON.onclick = () => {
   const request = new XMLHttpRequest();
   request.open('GET','/5.json');
@@ -8,7 +32,7 @@ getJSON.onclick = () => {
       console.log(request.response)
       const obj = JSON.parse(request.response)
       console.log(obj)
-      console.log(obj.name)
+      console.log(obj)
     }
   }
   request.send();
