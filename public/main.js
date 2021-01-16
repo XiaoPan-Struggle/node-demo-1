@@ -1,5 +1,22 @@
 
 console.log('hello world')
+getXML.onclick = () => {
+  console.log(1)
+  const request = new XMLHttpRequest();
+  request.open('GET','/4.xml');
+  request.onreadystatechange = (res) => {
+    if(request.readyState === 4 && request.status === 200){
+      const dom = request.responseXML;
+      console.log(dom)
+      const content = dom.getElementsByTagName('message')[0]
+      console.log(content)
+      document.body.appendChild(content)
+    }else{
+      console.log(res.currentTarget.response)
+    }
+  }
+  request.send()
+}
 getHTML.onclick = () => {
   const request = new XMLHttpRequest();
   request.open('GET','/3.html')
@@ -55,19 +72,6 @@ getCSS.onclick = () => {
       }
     }
   }
-  // //成功
-  // request.onload = () => {
-  //   // 创建style标签
-  //   const style = document.createElement('style')
-  //   // 添加style内容
-  //   style.innerHTML = request.response
-  //   // 插到head里
-  //   document.head.appendChild(style)
-  // }
-  // //报错
-  // request.onerror = () => {
-  //   console.log('error')
-  // }
   // 请求
   request.send();
 }
