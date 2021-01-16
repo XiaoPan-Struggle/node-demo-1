@@ -1,5 +1,18 @@
 
 console.log('hello world')
+getJSON.onclick = () => {
+  const request = new XMLHttpRequest();
+  request.open('GET','/5.json');
+  request.onreadystatechange = (res) => {
+    if(request.readyState === 4 && request.status == 200){
+      console.log(request.response)
+      const obj = JSON.parse(request.response)
+      console.log(obj)
+      console.log(obj.name)
+    }
+  }
+  request.send();
+}
 getXML.onclick = () => {
   console.log(1)
   const request = new XMLHttpRequest();
